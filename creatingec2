@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  InstanceType:
+    Type: String
+    Default: "t2.micro"
+    Description: "EC2 instance type for the instance"
+
+Resources:
+  MyEC2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: "ami-0c7217cdde317cfec"  # Replace with your desired AMI ID
+      KeyName: "ubuntu"  # Replace with your key pair name
+      Monitoring: true
+      Tags:
+        - Key: Name
+          Value: "MyEC2Instance"
+
+Outputs:
+  InstanceId:
+    Value: !Ref MyEC2Instance
+    Description: "ID of the created EC2 instance"
